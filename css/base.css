@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a, span {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+img {
+  display: block;
+}

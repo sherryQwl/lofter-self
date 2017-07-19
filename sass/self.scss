@@ -1,0 +1,302 @@
+@import "normalize6.0.scss";
+@import "base.scss";
+
+//设置高度100%
+html, body, .root-swiper-container {
+  height: 100%;
+}
+
+//抽取函数 实现rem的转换
+@function p2r($size) {
+  @return ($size/64*1rem);
+}
+
+//顶级swiper的样式
+.root-swiper-container {
+  display: flex;
+  flex-direction: column;
+  > .swiper-wrapper {
+    flex: 1;
+  }
+  > #root-swiper-pagination {
+    height: p2r(90);
+    //background-color: gray;
+    position: static; //页面中本来有absolute定位 并且有意个bottom为10px
+    span {
+      width: 20%;
+      //border: 1px solid #000;
+      border-radius: 0;
+      height: 100%;
+      margin: 0;
+      position: absolute;
+      font-size: (20rem/64);
+      opacity: .5;
+    }
+    //统一设置span标签伪元素的样式
+    span::before {
+      position: absolute;
+      width: 100%;
+      bottom: (14rem/64);
+      left: 0;
+      text-align: center;
+    }
+    span:nth-of-type(1) {
+      left: 0;
+      //设置背景图片
+      background: url("../images/01.app-icons/bb_btn_home_select.png") no-repeat top center / p2r(38) p2r(40);
+      &::before {
+        content: '首页';
+      }
+    }
+    span:nth-of-type(2) {
+      left: 20%;
+      //设置背景图片
+      background: url("../images/01.app-icons/bb_btn_label_select.png") no-repeat top center / p2r(51) p2r(38);
+      &::before {
+        content: '发现';
+      }
+    }
+    span:nth-of-type(3) {
+      right: 20%;
+      //设置背景图片
+      background: url("../images/01.app-icons/bb_btn_message_select.png") no-repeat top center / p2r(40) p2r(42);
+      &::before {
+        content: '消息';
+      }
+    }
+    span:nth-of-type(4) {
+      right: 0;
+      //设置背景图片
+      background: url("../images/01.app-icons/bb_btn_message_select.png") no-repeat top center / p2r(40) p2r(40);
+      &::before {
+        content: '我的';
+      }
+    }
+    //span被选中的时候 opacity为1
+    span.swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+  }
+  > .camera {
+    height: p2r(90);
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    bottom: 0;
+    background: url("../images/01.app-icons/bb_btn_post_select.png") no-repeat center center / p2r(83) p2r(54);
+  }
+}
+
+//首页的swiper的样式
+.slideA-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .slideA-pagination {
+    position: static;
+    height: p2r(80);
+    display: flex;
+    justify-content: center;
+    span {
+      width: p2r(214);
+      height: 100%;
+      border-radius: 0;
+      margin: 0 !important;
+      font-size: p2r(35);
+      color: gray;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent !important;
+      opacity: 1 !important;
+    }
+    span:nth-of-type(1)::before {
+      content: "关注";
+    }
+    span:nth-of-type(2)::before {
+      content: "订阅";
+    }
+    //当span被选中的时候添加 底部的边线
+    span.swiper-pagination-bullet-active {
+      border-bottom: p2r(2) solid yellowgreen;
+    }
+  }
+  > .swiper-wrapper {
+    flex: 1;
+    .swiper-slide {
+      height: auto;
+      overflow: scroll;
+    }
+  }
+}
+
+//首页中关注区域
+.slideA-container > .swiper-wrapper > .swiper-slide:nth-child(1) {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+//首页中订阅区域样式
+.slideA-container > .swiper-wrapper > .swiper-slide:nth-child(2) {
+  padding-top: p2r(26);
+  background-color: lightskyblue;
+  h2 {
+    font-size: p2r(25);
+    color: #828282;
+    height: p2r(71);
+    line-height: p2r(71);
+    background: #fff;
+    padding-left: p2r(28);
+  }
+  .items {
+    border-top: 1px solid #000;
+    background: #fff;
+    .item {
+      display: flex;
+      height: p2r(105);
+      .left {
+        width: p2r(126);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+          display: block;
+          width: p2r(72);
+          height: p2r(72);
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        border-bottom: 1px solid #000;
+        display: flex;
+        justify-content: space-between;
+        .pl {
+          p {
+            font-size: p2r(20);
+          }
+          p:nth-of-type(1) {
+            color: black;
+            padding-top: p2r(29);
+            padding-bottom: p2r(23);
+          }
+          p:nth-of-type(2) {
+            color: #b3b3b3;
+          }
+        }
+        .pr {
+          display: flex;
+          align-items: center;
+          a {
+            display: block;
+            width: p2r(84);
+            height: p2r(49);
+            font-size: p2r(22);
+            color: #9cb54b;
+            border-radius: p2r(25);
+            border: 1px solid #9cb54b;
+            line-height: p2r(49);
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+//发现区域样式
+.slideB {
+  overflow: scroll;
+  .top {
+    padding: p2r(12) p2r(20);
+    input {
+      width: 100%;
+      height: p2r(60);
+      background: #eee;
+      padding-left: p2r(160);
+      border-radius: p2r(10);
+    }
+  }
+  .content {
+    .slideB-banner {
+      a {
+        display: block;
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .slideB-coverFlow {
+      background: #eee;
+      height: p2r(705);
+      padding-top: p2r(36);
+      padding-bottom: p2r(77);
+      > .swiper-wrapper > .swiper-slide {
+        width: p2r(492);
+        height: p2r(592);
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .master-container {
+      h2 {
+        font-size: p2r(35);
+        color: #969696;
+        padding-top: p2r(33);
+        padding-left: p2r(31);
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          width:33.333%;
+          padding-top: p2r(41);
+          a {
+            width: 100%;
+            display: block;
+            img {
+              width: p2r(176);
+              height: p2r(176);
+              border-radius: 50%;
+              margin: 0 auto;
+            }
+            p {
+              padding-top: p2r(17);
+              text-align: center;
+            }
+            p:nth-of-type(1) {
+              font-size: p2r(30);
+              color: black;
+            }
+            p:nth-of-type(2) {
+              font-size: p2r(26);
+              color: #9a9a9a;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//我的区域样式
+.slideD{
+  .slideD-container{
+    height:100%;
+    background:url("../images/02.head-icons/lofter_header_icon_%20(1026).jpg");
+  }
+}
+
+.slideD-container>.swiper-wrapper>.swiper-slide{
+  height:auto;
+  background-color: #fff;
+}
